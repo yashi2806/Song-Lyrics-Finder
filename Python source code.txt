@@ -1,0 +1,76 @@
+import tkinter as tk
+from lyricsgenius import Genius
+
+# Initialize Genius API with your access token
+GENIUS_ACCESS_TOKEN = 'TtuLStKameY74qlisTXEZ0YkBcs21mAIQ68T4xUspHc8c-GDK9-sFKpd-dXu-Wfb'
+genius = Genius(GENIUS_ACCESS_TOKEN)
+
+def fetch_lyrics(song_title):
+    try:
+        song = genius.search_song(song_title)
+        if song:
+            return song.lyrics
+        else:
+            return "Lyrics not found for this song."
+    except Exception as e:
+        return f"Error: {e}"
+
+def search_and_display_lyrics():
+    song_title = song_entry.get()
+    lyrics = fetch_lyrics(song_title)
+    lyrics_text.config(state=tk.NORMAL)
+    lyrics_text.delete('1.0', tk.END)
+    lyrics_text.insert(tk.END, lyrics)
+    lyrics_text.config(state=tk.DISABLED)
+
+# Create GUI window
+window = tk.Tk()
+window.title("Song Lyrics")
+
+# Create and place GUI components
+song_label = tk.Label(window, text="Enter the song title:")
+song_label.pack()
+
+song_entry = tk.Entry(window, width=70)
+song_entry.pack()
+
+search_button = tk.Button(window, text="Search...", command=search_and_display_lyrics)
+search_button.pack()
+
+lyrics_text = tk.Text(window, width=80, height=20, wrap=tk.WORD, state=tk.DISABLED)
+lyrics_text.pack()
+
+# Run the GUI
+window.mainloop()
+
+
+
+//............................PROJECT DESCRIPTION.......................................
+
+SONG LYRICS FINDER
+
+This project is a simple desktop application built with Python and Tkinter that allows users to search for and display song lyrics. By entering a song title, users can fetch the corresponding lyrics using the Genius API and view them directly in the application. The intuitive graphical interface makes it easy for users to interact with the application and quickly retrieve song lyrics.
+
+Features
+
+●	API Integration: The application integrates with the Genius API. By using the Genius API, the application can search for a wide range of songs and reliably fetch their lyrics.
+
+●	User-Friendly Interface: The application features a clean and straightforward graphical user interface (GUI) created using Tkinter. Users are guided by a label prompting them to enter a song title, and the entry field is designed to accommodate lengthy titles with ease. 
+
+●	Dynamic Content Display: Once a song title is entered and the search button is clicked, the application dynamically retrieves and displays the lyrics. 
+
+●	Real-Time Search: The application processes the user's request in real-time, making it possible to quickly obtain and display lyrics without significant delays. This feature enhances the user experience by providing immediate access to the desired information.
+
+How It Works
+
+1.	Enter Song Title: The user inputs the song title in the provided entry field.
+2.	Fetch Lyrics: By clicking the "Search..." button, the application fetches the lyrics using the Genius API.
+3.	Display Lyrics: The retrieved lyrics are displayed in a text widget within the application window.
+
+
+TEAM:
+YASH SUMAN:21EJCCS853
+YASHI GARG:21EJCCS854
+YUTI SHARMA:21EJCCS856
+
+
